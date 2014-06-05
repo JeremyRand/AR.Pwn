@@ -1,0 +1,117 @@
+# depslib dependency file v1.0
+1352007301 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\convert.cpp
+	"convert.h"
+
+1352007379 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\convert.h
+	<stdio.h>
+
+1370760379 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\telnet_interface.cpp
+	<stdio.h>
+	<fcntl.h>
+	<vector>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<sys/resource.h>
+	<errno.h>
+	"mb_vision/BlobImageProcessorYUV.h"
+	"mb_vision/YUVImage.h"
+
+1370760608 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\blobimageprocessoryuv.h
+	"Image.h"
+	"ColorModelYUV.h"
+	<vector>
+
+1319778041 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\image.h
+	"Pixel.h"
+	<stdint.h>
+
+1282139510 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\pixel.h
+	<stdint.h>
+
+1356776304 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\colormodelyuv.h
+	<string>
+	<stdint.h>
+	"HSVPixel.h"
+
+1282139510 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\hsvpixel.h
+	<stdint.h>
+	"Pixel.h"
+
+1356769584 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\yuvimage.h
+	"Image.h"
+	<stdint.h>
+
+1356769820 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\blobimageprocessor.cpp
+	"BlobImageProcessor.h"
+	<algorithm>
+	<iostream>
+
+1322545241 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\blobimageprocessor.h
+	"Image.h"
+	"ColorModel.h"
+	<vector>
+
+1320622657 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\colormodel.h
+	<string>
+	<stdint.h>
+	"HSVPixel.h"
+
+1370760315 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\blobimageprocessoryuv.cpp
+	"BlobImageProcessorYUV.h"
+	<algorithm>
+	<iostream>
+
+1319778222 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\camera.cpp
+	"Camera.h"
+	<string>
+	<stdexcept>
+	<cstring>
+	<errno.h>
+
+1282139510 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\camera.h
+	<string>
+	<stdint.h>
+
+1356776992 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\colormodel.cpp
+	"ColorModel.h"
+	<stdio.h>
+
+1356777001 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\colormodelyuv.cpp
+	"ColorModelYUV.h"
+
+1282139510 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\gridimageprocessor.cpp
+	"GridImageProcessor.h"
+	<algorithm>
+
+1282139510 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\gridimageprocessor.h
+	"Image.h"
+	"ColorModel.h"
+	<vector>
+
+1282139510 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\hsvpixel.cpp
+	"HSVPixel.h"
+	<algorithm>
+
+1282139510 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\image.cpp
+	"Image.h"
+
+1322542727 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\rgb24image.cpp
+	"RGB24Image.h"
+	<stdio.h>
+	<stdlib.h>
+
+1322537604 c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\rgb24image.h
+	"Image.h"
+	<stdint.h>
+
+1370761963 source:c:\users\jeremyadmin\downloads\botball\snarc_ko_2012\team-snarc-kipr-open-2012\ar_drone_haxx\hook\processing\ar.pwn telnet interface\mb_vision\yuvimage.cpp
+	"YUVImage.h"
+	<stdio.h>
+	<stdlib.h>
+

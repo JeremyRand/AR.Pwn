@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AR.Pwn Reader" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/AR" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="cygwin" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/AR" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="cygwin" />
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="main.cpp" />
+		<Unit filename="mb_vision/BlobImageProcessor.cpp" />
+		<Unit filename="mb_vision/BlobImageProcessor.h" />
+		<Unit filename="mb_vision/BlobImageProcessorYUV.cpp" />
+		<Unit filename="mb_vision/BlobImageProcessorYUV.h" />
+		<Unit filename="mb_vision/Camera.cpp" />
+		<Unit filename="mb_vision/Camera.h" />
+		<Unit filename="mb_vision/ColorModel.cpp" />
+		<Unit filename="mb_vision/ColorModel.h" />
+		<Unit filename="mb_vision/ColorModelYUV.cpp" />
+		<Unit filename="mb_vision/ColorModelYUV.h" />
+		<Unit filename="mb_vision/GridImageProcessor.cpp" />
+		<Unit filename="mb_vision/GridImageProcessor.h" />
+		<Unit filename="mb_vision/HSVPixel.cpp" />
+		<Unit filename="mb_vision/HSVPixel.h" />
+		<Unit filename="mb_vision/Image.cpp" />
+		<Unit filename="mb_vision/Image.h" />
+		<Unit filename="mb_vision/Pixel.h" />
+		<Unit filename="mb_vision/RGB24Image.cpp" />
+		<Unit filename="mb_vision/RGB24Image.h" />
+		<Unit filename="mb_vision/YUVImage.cpp" />
+		<Unit filename="mb_vision/YUVImage.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
