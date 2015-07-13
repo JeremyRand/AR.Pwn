@@ -1,7 +1,7 @@
 /*
 
 AR.Pwn Hook Program
-Copyright 2012-2013 Jeremy Rand, Team SNARC / VECLabs
+Copyright 2012-2015 Jeremy Rand, Team SNARC / VECLabs
 Hooks the program.elf program from the AR.Drone firmware, and dumps interesting data relating to sensor devices.
 
 "arm-none-linux-gnueabi-gcc.exe" -shared -fPIC -ldl -o libhook.so hook.c
@@ -38,17 +38,17 @@ All calls for navdata
 #include <fcntl.h>
 #undef open
 
-#define VIDEO0_BUFFER "/tmp/video0_buffer"
-#define VIDEO0_READY "/tmp/video0_ready"
+#define CAM1_BUFFER "/tmp/video0_buffer"
+#define CAM1_READY "/tmp/video0_ready"
 
-#define VIDEO1_BUFFER "/tmp/video1_buffer"
-#define VIDEO1_READY "/tmp/video1_ready"
+#define CAM2_BUFFER "/tmp/video1_buffer"
+#define CAM2_READY "/tmp/video1_ready"
 
-#define VIDEO0_MARKED_BUFFER "/tmp/video0_marked_buffer"
-#define VIDEO0_MARKED_READY "/tmp/video0_marked_ready"
+#define CAM1_MARKED_BUFFER "/tmp/video0_marked_buffer"
+#define CAM1_MARKED_READY "/tmp/video0_marked_ready"
 
-#define VIDEO1_MARKED_BUFFER "/tmp/video1_marked_buffer"
-#define VIDEO1_MARKED_READY "/tmp/video1_marked_ready"
+#define CAM2_MARKED_BUFFER "/tmp/video1_marked_buffer"
+#define CAM2_MARKED_READY "/tmp/video1_marked_ready"
 
 int hook_handle_video0 = -1;
 //void* hook_buffer_video0 = NULL;
@@ -256,24 +256,24 @@ int ioctl(int d, int request, ...)
     printf("AR.Pwn Detected ioctl DQBUF of video0 index %d; dumping frame.\n", index);
 	
 	// If Ready Flag is not present, or if buffer is not present
-	if( ! (access(VIDEO0_READY, F_OK) != -1) || ! (access(VIDEO0_BUFFER, F_OK) != -1) )
+	if( ! (access(CAM1_READY, F_OK) != -1) || ! (access(CAM1_BUFFER, F_OK) != -1) )
 	{
-		int buffer_file = open(VIDEO0_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		int buffer_file = open(CAM1_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		write(buffer_file, hook_buffers_video0[index], 640*480*3/2);
 		close(buffer_file);
 		
-		int ready_file = open(VIDEO0_READY, O_WRONLY | O_CREAT, 0666);
+		int ready_file = open(CAM1_READY, O_WRONLY | O_CREAT, 0666);
 		close(ready_file);
 	}
 	
 	// If a marked frame is available from the vision code...
-	if( (access(VIDEO0_MARKED_READY, F_OK) != -1))
+	if( (access(CAM1_MARKED_READY, F_OK) != -1))
 	{
-		int buffer_file = open(VIDEO0_MARKED_BUFFER, O_RDONLY);
+		int buffer_file = open(CAM1_MARKED_BUFFER, O_RDONLY);
 		read(buffer_file, hook_buffers_video0[index], 640*480*3/2);
 		close(buffer_file);
 		
-		remove(VIDEO0_MARKED_READY);
+		remove(CAM1_MARKED_READY);
 	}
 	
 	// start is returned by mmap
@@ -289,24 +289,24 @@ int ioctl(int d, int request, ...)
     printf("AR.Pwn Detected ioctl DQBUF of video1 index %d; dumping frame.\n", index);
 	
 	// If Ready Flag is not present, or if buffer is not present
-	if( ! (access(VIDEO1_READY, F_OK) != -1) || ! (access(VIDEO1_BUFFER, F_OK) != -1) )
+	if( ! (access(CAM2_READY, F_OK) != -1) || ! (access(CAM2_BUFFER, F_OK) != -1) )
 	{
-		int buffer_file = open(VIDEO1_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		int buffer_file = open(CAM2_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		write(buffer_file, hook_buffers_video1[index], 176*144*3/2);
 		close(buffer_file);
 		
-		int ready_file = open(VIDEO1_READY, O_WRONLY | O_CREAT, 0666);
+		int ready_file = open(CAM2_READY, O_WRONLY | O_CREAT, 0666);
 		close(ready_file);
 	}
 	
 	// If a marked frame is available from the vision code...
-	if( (access(VIDEO1_MARKED_READY, F_OK) != -1))
+	if( (access(CAM2_MARKED_READY, F_OK) != -1))
 	{
-		int buffer_file = open(VIDEO1_MARKED_BUFFER, O_RDONLY);
+		int buffer_file = open(CAM2_MARKED_BUFFER, O_RDONLY);
 		read(buffer_file, hook_buffers_video1[index], 176*144*3/2);
 		close(buffer_file);
 		
-		remove(VIDEO1_MARKED_READY);
+		remove(CAM2_MARKED_READY);
 	}
   }
   
