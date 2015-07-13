@@ -23,6 +23,12 @@ using namespace std;
 //#include "mb_vision/RGB24Image.h"
 #include "mb_vision/YUVImage.h"
 
+#ifdef DRONEV2
+#include "CameraDroneV2.h"
+#else
+#include "CameraDroneV1.h"
+#endif
+
 #define VIDEO0_BUFFER "/tmp/video0_buffer"
 #define VIDEO0_READY "/tmp/video0_ready"
 
@@ -155,8 +161,8 @@ int main()
     //printf("Start of main()\n");
 
 	// Chroma resolution is half of the raw resolution in each dimension
-	video0_visionImageWrapper = new YUVImage(640/2, 480/2);
-	video1_visionImageWrapper = new YUVImage(176/2, 144/2);
+	video0_visionImageWrapper = new YUVImage(CAM1_WIDTH/2, CAM1_HEIGHT/2);
+	video1_visionImageWrapper = new YUVImage(CAM2_WIDTH/2, CAM2_HEIGHT/2);
 
     //printf("Init vars\n");
 
@@ -236,7 +242,7 @@ int main()
 
 			//read_video0_yuv();
 			int buffer_file = open(VIDEO0_BUFFER, O_RDONLY);
-			read(buffer_file, video0_visionImageWrapper->getBuffer(), 640*480*3/2);
+			read(buffer_file, video0_visionImageWrapper->getBuffer(), getBufferSize(CAM1_WIDTH, CAM1_HEIGHT));
 			close(buffer_file);
 
 			//ConvertYUV2RGB(video0_yuv, video0_yuv+(640*480), video0_yuv+(640*480*5/4), video0_visionImageWrapper->getBuffer(), 640, 480);
@@ -303,7 +309,7 @@ int main()
 
 			//read_video0_yuv();
 			int buffer_file = open(VIDEO1_BUFFER, O_RDONLY);
-			read(buffer_file, video1_visionImageWrapper->getBuffer(), 176*144*3/2);
+			read(buffer_file, video1_visionImageWrapper->getBuffer(), getBufferSize(CAM2_WIDTH, CAM2_HEIGHT));
 			close(buffer_file);
 
 			//ConvertYUV2RGB(video0_yuv, video0_yuv+(640*480), video0_yuv+(640*480*5/4), video0_visionImageWrapper->getBuffer(), 640, 480);
@@ -378,7 +384,7 @@ int main()
             if( ! (access(VIDEO0_MARKED_READY, F_OK) != -1) || ! (access(VIDEO0_MARKED_BUFFER, F_OK) != -1) )
             {
                 int buffer_file = open(VIDEO0_MARKED_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-                write(buffer_file, video0_visionImageWrapper->getBuffer(), 640*480*3/2);
+                write(buffer_file, video0_visionImageWrapper->getBuffer(), getBufferSize(CAM1_WIDTH, CAM1_HEIGHT));
                 close(buffer_file);
 
                 int ready_file = open(VIDEO0_MARKED_READY, O_WRONLY | O_CREAT, 0666);
@@ -392,7 +398,7 @@ int main()
             if( ! (access(VIDEO1_MARKED_READY, F_OK) != -1) || ! (access(VIDEO1_MARKED_BUFFER, F_OK) != -1) )
             {
                 int buffer_file = open(VIDEO1_MARKED_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-                write(buffer_file, video1_visionImageWrapper->getBuffer(), 176*144*3/2);
+                write(buffer_file, video1_visionImageWrapper->getBuffer(), getBufferSize(CAM2_WIDTH, CAM2_HEIGHT));
                 close(buffer_file);
 
                 int ready_file = open(VIDEO1_MARKED_READY, O_WRONLY | O_CREAT, 0666);
