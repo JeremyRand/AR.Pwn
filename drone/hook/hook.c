@@ -38,6 +38,12 @@ All calls for navdata
 #include <fcntl.h>
 #undef open
 
+#ifdef DRONEV2
+#include "CameraDroneV2.h"
+#else
+#include "CameraDroneV1.h"
+#endif
+
 #define CAM1_BUFFER "/tmp/video0_buffer"
 #define CAM1_READY "/tmp/video0_ready"
 
@@ -99,12 +105,12 @@ int open (__const char *__file, int __oflag, ...)
   open_handle = libc_open(__file, __oflag, mode);
   printf("AR.Pwn open() returned %d\n", open_handle);
   
-  if(strcmp(__file, "/dev/video0") == 0)
+  if(strcmp(__file, CAM1_DEVICE) == 0)
   {
     printf("AR.Pwn Detected open of video0; saving handle.\n");
 	hook_handle_video0 = open_handle;
   }
-  else if(strcmp(__file, "/dev/video1") == 0)
+  else if(strcmp(__file, CAM2_DEVICE) == 0)
   {
     printf("AR.Pwn Detected open of video1; saving handle.\n");
 	hook_handle_video1 = open_handle;
@@ -259,7 +265,7 @@ int ioctl(int d, int request, ...)
 	if( ! (access(CAM1_READY, F_OK) != -1) || ! (access(CAM1_BUFFER, F_OK) != -1) )
 	{
 		int buffer_file = open(CAM1_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-		write(buffer_file, hook_buffers_video0[index], 640*480*3/2);
+		write(buffer_file, hook_buffers_video0[index], getBufferSize(CAM1_WIDTH, CAM1_HEIGHT));
 		close(buffer_file);
 		
 		int ready_file = open(CAM1_READY, O_WRONLY | O_CREAT, 0666);
@@ -270,7 +276,7 @@ int ioctl(int d, int request, ...)
 	if( (access(CAM1_MARKED_READY, F_OK) != -1))
 	{
 		int buffer_file = open(CAM1_MARKED_BUFFER, O_RDONLY);
-		read(buffer_file, hook_buffers_video0[index], 640*480*3/2);
+		read(buffer_file, hook_buffers_video0[index], getBufferSize(CAM1_WIDTH, CAM1_HEIGHT));
 		close(buffer_file);
 		
 		remove(CAM1_MARKED_READY);
@@ -292,7 +298,7 @@ int ioctl(int d, int request, ...)
 	if( ! (access(CAM2_READY, F_OK) != -1) || ! (access(CAM2_BUFFER, F_OK) != -1) )
 	{
 		int buffer_file = open(CAM2_BUFFER, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-		write(buffer_file, hook_buffers_video1[index], 176*144*3/2);
+		write(buffer_file, hook_buffers_video1[index], getBufferSize(CAM2_WIDTH, CAM2_HEIGHT));
 		close(buffer_file);
 		
 		int ready_file = open(CAM2_READY, O_WRONLY | O_CREAT, 0666);
@@ -303,7 +309,7 @@ int ioctl(int d, int request, ...)
 	if( (access(CAM2_MARKED_READY, F_OK) != -1))
 	{
 		int buffer_file = open(CAM2_MARKED_BUFFER, O_RDONLY);
-		read(buffer_file, hook_buffers_video1[index], 176*144*3/2);
+		read(buffer_file, hook_buffers_video1[index], getBufferSize(CAM2_WIDTH, CAM2_HEIGHT));
 		close(buffer_file);
 		
 		remove(CAM2_MARKED_READY);
